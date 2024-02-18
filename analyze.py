@@ -1,6 +1,10 @@
 import matplotlib.pyplot as plt
 import numpy
-backLegSensorValues = numpy.load('data/back_leg_sensor_values.npy')
+backLegSensorValues = numpy.load('data/BackLegSensorValues.npy')
+frontLegSensorValues = numpy.load('data/FrontLegSensorValues.npy')
 print(backLegSensorValues)
-plt.plot(backLegSensorValues)
+print(frontLegSensorValues)
+plt.plot(backLegSensorValues, label="BackLeg", linewidth=4)
+plt.plot(frontLegSensorValues, label="FrontLeg")
+plt.legend()
 plt.show()
