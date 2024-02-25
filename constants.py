@@ -4,6 +4,10 @@ gravity2 = 0
 gravity3 = -9.8
 zeros = 1000
 
+amplitude = np.pi/2
+frequency = 10
+offset = 0
+
 backLegAmplitude = np.pi/2
 backLegFrequency = 10
 backLegPhaseOffset = 0
