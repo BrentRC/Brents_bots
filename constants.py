@@ -2,9 +2,9 @@ import numpy as np
 gravity1 = 0
 gravity2 = 0
 gravity3 = -9.8
-zeros = 1000
+zeros = 10000
 
-amplitude = np.pi/2
+amplitude = np.pi/4
 frequency = 10
 offset = 0
 
@@ -13,8 +13,8 @@ backLegFrequency = 10
 backLegPhaseOffset = 0
 backLegTargetAngles = backLegAmplitude * np.sin(2 * np.pi * backLegFrequency * np.linspace(0, 1, 1000) + backLegPhaseOffset)
 
-frontLegAmplitude = np.pi/3
-frontLegFrequency = 11
+frontLegAmplitude = np.pi/2
+frontLegFrequency = 10
 frontLegPhaseOffset = 0
 frontLegTargetAngles = frontLegAmplitude * np.sin(2 * np.pi * frontLegFrequency * np.linspace(0, 1, 1000) + frontLegPhaseOffset)
 
