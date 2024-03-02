@@ -10,7 +10,11 @@ def Create_World():
     pyrosim.Send_Cube(name="Box", pos=[x,y,z] , size=[length,width,height])
     pyrosim.End()
 Create_World()
+
 def Create_robot():
+    pass
+
+def Generate_Body():
     length = 1
     width = 1
     height = 1
@@ -19,11 +23,10 @@ def Create_robot():
     z = 1.5
     pyrosim.Start_URDF("body.urdf")
     pyrosim.Send_Cube(name="Torso", pos=[x, y, z], size=[length, width, height])
-    pyrosim.Send_Joint(name="Torso_BackLeg", parent="Torso", child="BackLeg", type="revolute", position=[-0.5,0,1])
+    pyrosim.Send_Joint(name="Torso_BackLeg", parent="Torso", child="BackLeg", type="revolute", position=[-0.5, 0, 1])
     pyrosim.Send_Cube(name="BackLeg", pos=[-0.5, 0, -0.5], size=[length, width, height])
-    pyrosim.Send_Joint(name="Torso_FrontLeg", parent="Torso", child="FrontLeg", type="revolute", position=[0.5,0,1])
+    pyrosim.Send_Joint(name="Torso_FrontLeg", parent="Torso", child="FrontLeg", type="revolute", position=[0.5, 0, 1])
     pyrosim.Send_Cube(name="FrontLeg", pos=[0.5, 0, -0.5], size=[length, width, height])
-
 
     # pyrosim.Send_Cube(name="Link0", pos=[x, y, z], size=[length, width, height])
     # pyrosim.Send_Joint(name="Link0_Link1", parent="Link0", child="Link1", type="revolute", position=[0,0,1])
@@ -39,4 +42,23 @@ def Create_robot():
     # pyrosim.Send_Joint(name="Link5_Link6", parent="Link5", child="Link6", type="revolute", position=[0, 0, -1])
     # pyrosim.Send_Cube(name="Link6", pos=[0, 0, -0.5], size=[length, width, height])
     pyrosim.End()
-Create_robot()
+#Create_robot()
+
+
+def Generate_Brain():
+    length = 1
+    width = 1
+    height = 1
+    x = 0
+    y = 0
+    z = 1.5
+    pyrosim.Start_NeuralNetwork("brain.nndf")
+    pyrosim.Send_Sensor_Neuron(name=0, linkName="Torso")
+    pyrosim.Send_Sensor_Neuron(name=1, linkName="BackLeg")
+    pyrosim.Send_Sensor_Neuron(name=2, linkName="FrontLeg")
+    pyrosim.Send_Motor_Neuron(name=3, jointName=b'Torso_BackLeg')
+    pyrosim.Send_Motor_Neuron(name=4, jointName=b'Torso_FrontLeg')
+    pyrosim.End()
+
+Generate_Body()
+Generate_Brain()
