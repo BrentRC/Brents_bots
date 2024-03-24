@@ -5,8 +5,11 @@ import pybullet as p
 import time
 import constants as c
 class SIMULATION:
-    def __init__(self):
-        physicsClient = p.connect(p.DIRECT)
+    def __init__(self, directOrGui):
+        if directOrGui == "DIRECT":
+            physicsClient = p.connect(p.DIRECT)
+        else:
+            pysicsClient = p.connect(p.GUI)
         p.setAdditionalSearchPath(pybullet_data.getDataPath())
         p.setGravity(c.gravity1, c.gravity2, c.gravity3)
         self.world = WORLD()

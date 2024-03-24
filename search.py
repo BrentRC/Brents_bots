@@ -5,3 +5,4 @@ from hillclimber import HILLCLIMBER
 #     os.system("py simulate.py")
 hc = HILLCLIMBER()
 hc.Evolve()
+hc.Show_Best()

@@ -8,11 +8,11 @@ class SOLUTION:
         self.weights = (self.weights * 2) - 1
     def Evolve(self):
         pass
-    def Evaluate(self):
+    def Evaluate(self, mode):
         self.Create_World()
         self.Create_Body()
         self.Create_Brain()
-        os.system("py simulate.py")
+        os.system("py simulate.py " + mode)
 
         f = open('fitness.txt', "r")
         fitness_str = f.read().strip()
