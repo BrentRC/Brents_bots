@@ -2,7 +2,7 @@ import numpy as np
 gravity1 = 0
 gravity2 = 0
 gravity3 = -9.8
-zeros = 10000
+zeros = 1000
 
 amplitude = np.pi/4
 frequency = 10
@@ -20,3 +20,5 @@ frontLegTargetAngles = frontLegAmplitude * np.sin(2 * np.pi * frontLegFrequency 
 
 maxForce = 50
 sleeper = 1/60
+
+numberOfGenerations = 10

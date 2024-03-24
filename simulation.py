@@ -6,7 +6,7 @@ import time
 import constants as c
 class SIMULATION:
     def __init__(self):
-        physicsClient = p.connect(p.GUI)
+        physicsClient = p.connect(p.DIRECT)
         p.setAdditionalSearchPath(pybullet_data.getDataPath())
         p.setGravity(c.gravity1, c.gravity2, c.gravity3)
         self.world = WORLD()
@@ -21,3 +21,6 @@ class SIMULATION:
             time.sleep(c.sleeper)
     def __del__(self):
         p.disconnect()
+
+    def Get_Fitness(self):
+        self.robot.Get_Fitness()
