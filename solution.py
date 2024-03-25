@@ -1,22 +1,46 @@
+import time
+
 import numpy as np
 import pyrosim.pyrosim as pyrosim
 import os
 import random
 class SOLUTION:
-    def __init__(self):
+    def __init__(self, nextAvailableID):
+        self.myID = nextAvailableID
         self.weights = np.random.rand(3, 2)
         self.weights = (self.weights * 2) - 1
     def Evolve(self):
         pass
+
+    def Start_Simulation(self, mode):
+        self.Create_World()
+        self.Create_Body()
+        self.Create_Brain()
+        os.system("start /B py simulate.py " + mode + " " + str(self.myID))
+
+    def Wait_For_Simulation_To_End(self):
+        fitnessFileName = f"fitness{self.myID}.txt"
+        while not os.path.exists(fitnessFileName):
+            time.sleep(0.01)
+        f = open(fitnessFileName, "r")
+        fitness_str = f.read().strip()
+        self.fitness = float(fitness_str)
+        print(self.fitness)
+        f.close()
+        os.system(f"del fitness{self.myID}.txt")
+
     def Evaluate(self, mode):
         self.Create_World()
         self.Create_Body()
         self.Create_Brain()
-        os.system("py simulate.py " + mode)
-
-        f = open('fitness.txt', "r")
+        os.system("start /B py simulate.py " + mode + " " + str(self.myID))
+        fitnessFileName = f"fitness{self.myID}.txt"
+        while not os.path.exists(fitnessFileName):
+            time.sleep(0.01)
+        f = open(fitnessFileName, "r")
         fitness_str = f.read().strip()
         self.fitness = float(fitness_str)
+        print(self.fitness)
         f.close()
 
     def Mutate(self):
@@ -51,7 +75,7 @@ class SOLUTION:
         pyrosim.Send_Cube(name="FrontLeg", pos=[0.5, 0, -0.5], size=[length, width, height])
         pyrosim.End()
     def Create_Brain(self):
-        pyrosim.Start_NeuralNetwork("brain.nndf")
+        pyrosim.Start_NeuralNetwork(f"brain{self.myID}.nndf")
         pyrosim.Send_Sensor_Neuron(name=0, linkName="Torso")
         pyrosim.Send_Sensor_Neuron(name=1, linkName="BackLeg")
         pyrosim.Send_Sensor_Neuron(name=2, linkName="FrontLeg")
@@ -64,3 +88,6 @@ class SOLUTION:
             for currentColumn in motorNames:
                 pyrosim.Send_Synapse(sourceNeuronName=currentRow, targetNeuronName=currentColumn+3, weight=self.weights[currentRow][currentColumn])
         pyrosim.End()
+
+    def Set_ID(self, ID):
+        self.myID = ID

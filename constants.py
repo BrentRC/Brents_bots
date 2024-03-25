@@ -22,3 +22,5 @@ maxForce = 50
 sleeper = 1/60
 
 numberOfGenerations = 10
+
+populationSize = 10
