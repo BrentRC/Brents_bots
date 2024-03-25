@@ -6,6 +6,7 @@ import time
 import constants as c
 class SIMULATION:
     def __init__(self, directOrGui):
+        self.directOrGUI = directOrGui
         if directOrGui == "DIRECT":
             physicsClient = p.connect(p.DIRECT)
         else:
@@ -21,7 +22,8 @@ class SIMULATION:
             self.robot.Sense(i)
             self.robot.Think()
             self.robot.Act(i)
-            time.sleep(c.sleeper)
+            if self.directOrGUI == "GUI":
+                time.sleep(c.sleeper)
     def __del__(self):
         p.disconnect()
 

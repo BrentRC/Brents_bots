@@ -2,7 +2,7 @@ import numpy as np
 gravity1 = 0
 gravity2 = 0
 gravity3 = -9.8
-zeros = 300
+zeros = 500
 
 amplitude = np.pi/4
 frequency = 10

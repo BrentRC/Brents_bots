@@ -19,7 +19,7 @@ class HILLCLIMBER:
         self.Select()
 
     def Print(self):
-        print("Parent fitness: ", self.parent.fitness, ", Child fitness: ", self.child.fitness)
+        print("\nParent fitness:", self.parent.fitness, ", Child fitness:", self.child.fitness)
 
     def Spawn(self):
         self.child = copy.deepcopy(self.parent)
