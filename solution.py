@@ -25,7 +25,6 @@ class SOLUTION:
         f = open(fitnessFileName, "r")
         fitness_str = f.read().strip()
         self.fitness = float(fitness_str)
-        print(self.fitness)
         f.close()
         os.system(f"del fitness{self.myID}.txt")
 
@@ -40,7 +39,7 @@ class SOLUTION:
         f = open(fitnessFileName, "r")
         fitness_str = f.read().strip()
         self.fitness = float(fitness_str)
-        print(self.fitness)
+        # print(self.fitness)
         f.close()
 
     def Mutate(self):
